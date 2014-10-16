@@ -1,0 +1,7 @@
+# Mac droppings
+*.DS_Store
+images/*
+# Others
+*.exe
+*.swp
+*.mdb
