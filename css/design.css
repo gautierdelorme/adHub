@@ -1,0 +1,78 @@
+html, body{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.header {
+	height: 200px;
+	width: 90%;
+	background-image: url("../images/annonce.png");
+	background-repeat: repeat-x;
+	margin: 0 auto;
+	border: 1px solid black;
+}
+
+.header > h1 {
+	position: absolute;
+	top: 145px;
+	left: 64%;
+}
+
+.buttonsHeader {
+	display: inline-block;
+	background-color: white;
+	margin-top: 190px;
+	margin-left: 30px;
+}
+
+.buttonsHeader > div {
+	background-color: white;
+	display: inline-block;
+	background-repeat: no-repeat;
+	padding-right: 5px;
+}
+
+.buttonsHeader > div > p {
+	margin-left: 35px;
+	margin-top: 5px;
+}
+
+.buttonFind {
+	margin-left: 5px;
+	background-image: url("../images/24x24/zoom.png");
+}
+
+.buttonPost {
+	background-image: url("../images/24x24/new_page.png");
+}
+
+.buttonAccount {
+	background-image: url("../images/24x24/user.png");
+}
+
+.content {
+	height: 100%;
+	width: 90%;
+	background-repeat: repeat-x;
+	margin: 50px auto;
+	border: 1px solid black;
+}
+
+.buttonSwitch {
+	background-image: url("../images/24x24/globe.png");
+	background-color: white;
+	background-repeat: no-repeat;
+	border: 1px solid black;
+	display: inline-block;
+	position: relative;
+	top: -17px;
+	left: 90%;
+	height: 30px;
+	padding-right : 5px;
+}
+
+.buttonSwitch > p {
+	margin-left: 35px;
+	margin-top: 5px;
+}

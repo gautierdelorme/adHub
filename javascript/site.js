@@ -1,4 +1,4 @@
-function initialize() {
+/*function initialize() {
   var mapOptions = {
     zoom: 8,
     center: new google.maps.LatLng(-34.397, 150.644)
@@ -17,4 +17,12 @@ function loadScript() {
   console.log('load');
 }
 
-window.onload = loadScript;
+window.onload = loadScript;*/
+
+$( document ).ready(function() {
+  $(".header").corner("20px bottom");
+  $(".content").corner("20px");
+  $(".buttonSwitch").corner("5px");
+  $(".panelFind").hide();
+  $(".panelPost").hide();
+});
