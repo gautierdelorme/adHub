@@ -124,6 +124,7 @@ div[class^="panel"] {
     position: absolute;
     top: 50px;
     left: 70%;
+    z-index: 1000;
 }
 
 div[class^="panel"]:hover {
