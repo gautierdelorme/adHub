@@ -33,6 +33,10 @@ html, body{
 	padding-right: 5px;
 }
 
+.buttonsHeader > div:hover {
+	font-weight: bold;
+}
+
 .buttonsHeader > div > p {
 	margin-left: 35px;
 	margin-top: 5px;
@@ -65,7 +69,7 @@ html, body{
 	background-repeat: no-repeat;
 	border: 1px solid black;
 	display: inline-block;
-	position: relative;
+	position: absolute;
 	top: -17px;
 	left: 90%;
 	height: 30px;
@@ -75,4 +79,54 @@ html, body{
 .buttonSwitch > p {
 	margin-left: 35px;
 	margin-top: 5px;
+}
+
+.buttonSwitch:hover {
+	font-weight: bold;
+}
+
+.frontView > table {
+	width: 100%;
+	margin : 0px 10px 0px 0px;
+	border-collapse: collapse;
+}
+
+.frontView > table td {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	text-align: center;
+	padding-top : 5px;
+}
+
+.frontView > table td:last-child{
+	border-left: 1px solid black;
+	width: 50%;
+	text-align: justify;
+	padding: 0 5px 0 5px;
+}
+
+.frontView > table th:last-child {
+	border-left: 1px solid black;
+	width: 50%;
+	text-align: center;
+}
+
+.backView > .buttonSwitch {
+	background-image: url("../images/24x24/full_page.png");
+}
+
+div[class^="panel"] {
+	background-color: white;
+	border: 1px solid black;
+	visibility: hidden;
+	opacity: 0.5;
+    filter: alpha(opacity=50); /* IE.... */
+    position: absolute;
+    top: 50px;
+    left: 70%;
+}
+
+div[class^="panel"]:hover {
+	opacity: 1;
+    filter: alpha(opacity=100); /* IE.... */
 }

@@ -18,11 +18,30 @@ function loadScript() {
 }
 
 window.onload = loadScript;*/
+$(".header").corner("20px bottom");
+$(".content").corner("20px");
+$('div[class^="panel"]').corner("5px");
+$(".buttonSwitch").corner("5px");
+$( 'div[class^="panel"]' ).draggable();
+
+function hideShowPanel(panel) {
+  if ($(panel).css("visibility") == "hidden") {
+    $('div[class^="panel"]').css("visibility", "hidden");
+    $(panel).css("visibility", "visible");
+  }
+  else {
+    $(panel).css("visibility", "hidden");
+  }
+}
 
 $( document ).ready(function() {
-  $(".header").corner("20px bottom");
-  $(".content").corner("20px");
-  $(".buttonSwitch").corner("5px");
-  $(".panelFind").hide();
-  $(".panelPost").hide();
+  $('.content').quickFlip();
+  $(".buttonFind").click(function( event ) {
+    hideShowPanel(".panelFind");
+    event.preventDefault();
+  });
+  $(".buttonPost").click(function( event ) {
+    hideShowPanel(".panelPost");
+    event.preventDefault();
+  });
 });

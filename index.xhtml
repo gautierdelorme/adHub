@@ -1,39 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-	   <link rel = "stylesheet" href = "css/design.css" type = "text/css"/>
-	   <title>AdHub</title> 
-	</head> 
-	<body>
-		<div class="header">
-			<h1>AdHub by Aristochats Team</h1>
-			<div class="buttonsHeader">
-				<div class="buttonFind">
-					<p>Find</p>
-				</div>
-				<div class="buttonPost">
-					<p>Post</p>
-				</div>
-				<div class="buttonAccount">
-					<p>Account</p>
-				</div>
+<head>
+	<link rel = "stylesheet" href = "css/design.css" type = "text/css"/>
+	<title>AdHub</title> 
+</head> 
+<body>
+	<div class="header">
+		<h1>AdHub by Aristochats Team</h1>
+		<div class="buttonsHeader">
+			<div class="buttonFind">
+				<p>Trouver</p>
+			</div>
+			<div class="buttonPost">
+				<p>Poster</p>
+			</div>
+			<div class="buttonAccount">
+				<p>Compte</p>
 			</div>
 		</div>
-		<div class="content">
-			<div class="buttonSwitch">
-					<p>Switch</p>
+	</div>
+	<div class="panelFind">
+		<form action="#">
+			<dl>
+				<dt><label for="prenom">Prénom :</label> </dt>
+				<dd><input type="text" name="prenom" id="prenom" size="20" /></dd>
+				<dt><label for="nom">Nom : </label></dt>
+				<dd><input type="text" id="nom" name="nom" size="20" /></dd>
+				<dt><label for="age">Age : </label></dt>
+				<dd><select id="age" name="age">
+					<option>- de 18 ans</option>
+					<option>18 à 40 ans</option>
+					<option>41 à 60 ans</option>
+					<option>+ de 60 ans</option>
+				</select></dd>
+			</dl>
+		</form>
+	</div>
+	<div class="panelPost">
+		<form action="#">
+			<dl>
+				<dt><label for="prenom">Yooo :</label> </dt>
+				<dd><input type="text" name="prenom" id="prenom" size="20" /></dd>
+				<dt><label for="nom">Nom : </label></dt>
+				<dd><input type="text" id="nom" name="nom" size="20" /></dd>
+				<dt><label for="age">Age : </label></dt>
+				<dd><select id="age" name="age">
+					<option>- de 18 ans</option>
+					<option>18 à 40 ans</option>
+					<option>41 à 60 ans</option>
+					<option>+ de 60 ans</option>
+				</select></dd>
+			</dl>
+		</form>
+	</div>
+	<div class="content">
+		<div class="frontView">
+			<table>
+				<tr>
+					<th>Photo</th>
+					<th>Categorie</th> 
+					<th>Prix</th>
+					<th>Ville</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td><img src="images/128x128/protection.png" alt="Protection picture" /></td>
+					<td>Electromenager</td> 
+					<td>$125</td>
+					<td>Trois-Rivières</td>
+					<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</td>
+				</tr>
+				<tr>
+					<td><img src="images/128x128/home.png" alt="Home picture" /></td>
+					<td>Logement</td> 
+					<td>$250 000</td>
+					<td>Toulouse</td>
+					<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</td>
+				</tr>
+				<tr>
+					<td><img src="images/128x128/photo_camera.png" alt="Camera picture" /></td>
+					<td>Électronique</td> 
+					<td>$75</td>
+					<td>Montreal</td>
+					<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</td>
+				</tr>
+			</table>
+			<div class="buttonSwitch quickFlipCta">
+				<p>Carte</p>
 			</div>
 		</div>
-		<div class="panelFind">
+
+		<div class="backView">
+			<div id="google-map">
+			</div>
+			<div class="buttonSwitch quickFlipCta">
+				<p>Liste</p>
+			</div>
 		</div>
-		<div class="panelPost">
-		</div>
-		<script src="javascript/jquery-1.10.1.min.js"></script>
-		<script src="javascript/jquery-migrate-1.2.1.min.js"></script>
-		<script src="javascript/jquery.quickflip.min.js"></script>
-		<script src="javascript/jquery.corner.js"/>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT87knbQLe1XH8ypeDtQusMDw7zQcKwqM"></script>
-    	<script src="javascript/site.js"/>
-	</body>	
+	</div>
+	<script src="javascript/jquery-1.10.2.min.js"></script>
+  	<script src="javascript/jquery-ui.min.js"></script>
+	<script src="javascript/jquery.quickflip.min.js"></script>
+	<script src="javascript/jquery.corner.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT87knbQLe1XH8ypeDtQusMDw7zQcKwqM"></script>
+	<script src="javascript/site.js"></script>
+</body>	
 </html>
