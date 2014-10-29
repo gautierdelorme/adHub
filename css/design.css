@@ -4,12 +4,36 @@ html, body{
 	padding: 0;
 }
 
-#postButton{
+#map_canvas {
+    height: 100%;
+    width: 100%;
 }
 
-#map_canvas {
-    width: 500px;
-    height: 400px;
+.panelFind input {
+	width:140px;
+}
+.panelFind select {
+	width:140px;
+}
+
+.panelPost input {
+	width:110px;
+}
+.panelPost select {
+	width:110px;
+}
+
+.panelFind input[type="submit"] {
+	width: auto;
+}
+
+.panelPost input[type="submit"] {
+	width: auto;
+	margin-left: 140px;
+}
+
+.panelPost input[type="reset"] {
+	width: auto;
 }
 
 .header {

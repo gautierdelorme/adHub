@@ -1,25 +1,22 @@
+var map;
 function initialize() {
-  var latlng = new google.maps.LatLng(46.347301, -72.577690);
-	//objet contenant des propriétés avec des identificateurs prédéfinis dans Google Maps permettant
-	//de définir des options d'affichage de notre carte
-	var options = {
-    center: latlng,
-    zoom: 19,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+  var mapOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(43.604652, 1.4442090000000007)
   };
-
-  //constructeur de la carte qui prend en paramêtre le conteneur HTML
-  //dans lequel la carte doit s'afficher et les options
-  var map_canvas = new google.maps.Map(document.getElementById("map_canvas"), options);
+  map = new google.maps.Map(document.getElementById('map_canvas'),
+      mapOptions);
 }
 
 function loadScript() {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&amp;callback=initialize';
+  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
+      'callback=initialize';
   document.body.appendChild(script);
-  console.log('load');
 }
+
+window.onload = loadScript;
 
 // Validation de l'Email dans le formulaire Post
 function validateEmail(email)
@@ -88,17 +85,15 @@ function placeholder(item, pholder){
   $(item).focus(function() {
     if( $(this).val() == pholder ) {
       $(this).val("");
-      $(this).css("color","black")
+      $(this).css("color","black");
     }
   }).blur(function() {
     if ($(this).val() == "") {
-      $(this).css("color","gray")
+      $(this).css("color","gray");
       $(this).val(pholder);
     }
   }).blur();
 }
-
-window.onload = loadScript;
 
 $(".header").corner("20px bottom");
 $(".content").corner("20px");
@@ -120,4 +115,12 @@ $( document ).ready(function() {
   placeholder("input[name='email']", "Saisissez un email")
   placeholder("input[name='prixPost']", "Saisissez un prix")
   placeholder("input[name='nom']", "Saisissez un nom")
+
+  $( ".buttonSwitch" ).click(function() {
+    console.log("yo");
+    center = map.getCenter()
+    setTimeout(function() {
+    google.maps.event.trigger(map,'resize');map.setCenter(center);
+  }, 500);
+  });
 });
