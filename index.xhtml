@@ -5,7 +5,7 @@
 	<link rel = "stylesheet" href = "css/design.css" type = "text/css"/>
 	<title>AdHub</title> 
 </head> 
-<body>
+<body onload="initialize()">
 	<div class="header">
 		<h1>AdHub by Aristochats Team</h1>
 		<div class="buttonsHeader">
@@ -22,38 +22,96 @@
 	</div>
 	<div class="panelFind">
 		<form action="#">
-			<dl>
-				<dt><label for="prenom">Prénom :</label> </dt>
-				<dd><input type="text" name="prenom" id="prenom" size="20" /></dd>
-				<dt><label for="nom">Nom : </label></dt>
-				<dd><input type="text" id="nom" name="nom" size="20" /></dd>
-				<dt><label for="age">Age : </label></dt>
-				<dd><select id="age" name="age">
-					<option>- de 18 ans</option>
-					<option>18 à 40 ans</option>
-					<option>41 à 60 ans</option>
-					<option>+ de 60 ans</option>
-				</select></dd>
-			</dl>
+			<table>
+				<tr><td><label for="mot">Mot Clé :</label> </td>
+				<td><input type="text" name="mot" id="mot" size="18" /></td></tr>
+				
+				<tr><td><label for="categorie">Catégorie :</label></td>
+				<td><select id="categorie" name="categorie">
+					<option>Toutes les catégories</option>
+					<option>Electronique</option>
+					<option>Electromenager</option>
+					<option>Logement</option>
+					<option>Mobilier</option>
+					<option>Service</option>
+					<option>Voiture</option>
+				</select></td></tr>
+				
+				<tr><td><label for="prix"> Prix : </label></td>
+				<td><select id="prix" name="prix">
+					<option>Tous les prix</option>
+					<option>Moins de 100$</option>
+					<option>Entre 100$ et 500$</option>
+					<option>Entre 500$ et 1000$</option>
+					<option>Entre 1000$ et 5000$</option>
+					<option>Entre 5000$ et 10000$</option>
+					<option>Plus de 10000$</option>
+				</select></td></tr>
+				
+				<tr><td><label for="ville"> Ville : </label></td>
+				<td><select id="ville" name="ville">
+					<option>Toutes les villes</option>
+					<option>Trois-Rivières</option>
+					<option>Montréal</option>
+					<option>Québec</option>
+				</select></td></tr>
+				
+				<tr><td><label for="trier"> Trier par : </label></td>
+				<td><select id="trier" name="trier">
+					<option>Distance</option>
+					<option>Prix</option>
+					<option>Catégorie</option>
+				</select></td>
+				<td><input type="submit" value="Chercher" /></td></tr>
+				
+				
+			</table>
 		</form>
 	</div>
+	
 	<div class="panelPost">
-		<form action="#">
-			<dl>
-				<dt><label for="prenom">Yooo :</label> </dt>
-				<dd><input type="text" name="prenom" id="prenom" size="20" /></dd>
-				<dt><label for="nom">Nom : </label></dt>
-				<dd><input type="text" id="nom" name="nom" size="20" /></dd>
-				<dt><label for="age">Age : </label></dt>
-				<dd><select id="age" name="age">
-					<option>- de 18 ans</option>
-					<option>18 à 40 ans</option>
-					<option>41 à 60 ans</option>
-					<option>+ de 60 ans</option>
-				</select></dd>
-			</dl>
+		<form id="panelPost" method="post" action= "" onsubmit="return validate()">
+			<table>
+			
+				<tr><td><label for="nom">Nom :</label> </td>
+				<td><input type="text" name="nom" id="nom" size="18" /></td></tr>
+				
+				<tr><td><label for="prix">Prix :</label> </td>
+				<td><input type="text" name="prixPost" id="prixPost" size="18" /></td></tr>
+				
+				<tr><td><label for="categorie"> Catégorie : </label></td>
+				<td><select id="categoriePost" name="categoriePost">
+					<option>Electronique</option>
+					<option>Electromenager</option>
+					<option>Logement</option>
+					<option>Mobilier</option>
+					<option>Service</option>
+					<option>Voiture</option>
+				</select></td></tr>
+								
+				<tr><td><label for="ville"> Ville : </label></td>
+				<td><select id="villePost" name="ville">
+					<option>Toutes les villes</option>
+					<option>Trois-Rivières</option>
+					<option>Montréal</option>
+					<option>Québec</option>
+				</select></td></tr>
+				
+				<tr><td><label for="description">Description : <br /></label> </td>
+				<td><textarea  name="description" id="description" rows="3" cols="12" ></textarea></td></tr>
+				
+				<tr><td><label for="email">Email :</label> </td>
+				<td><input type="text" name="email" id="email" size="18" /></td></tr>
+				
+				<tr><td>
+				<input type="reset" value="Réinitialiser" />
+				<input id="postButtom" type="submit" value="Publier" />
+				</td>
+				</tr>
+			</table>
 		</form>
 	</div>
+	
 	<div class="content">
 		<div class="frontView">
 			<table>
@@ -92,18 +150,18 @@
 		</div>
 
 		<div class="backView">
-			<div id="google-map">
-			</div>
+			<div id="map_canvas"></div>
 			<div class="buttonSwitch quickFlipCta">
 				<p>Liste</p>
 			</div>
+			
 		</div>
 	</div>
-	<script src="javascript/jquery-1.10.2.min.js"></script>
-  	<script src="javascript/jquery-ui.min.js"></script>
-	<script src="javascript/jquery.quickflip.min.js"></script>
-	<script src="javascript/jquery.corner.js"></script>
+	<script type="text/javascript" src="javascript/jquery-1.10.2.min.js"></script>
+  	<script type="text/javascript" src="javascript/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="javascript/jquery.quickflip.min.js"></script>
+	<script type="text/javascript" src="javascript/jquery.corner.js"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT87knbQLe1XH8ypeDtQusMDw7zQcKwqM"></script>
-	<script src="javascript/site.js"></script>
+	<script type="text/javascript" src="javascript/site.js"></script>
 </body>	
 </html>
