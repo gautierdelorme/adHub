@@ -40,7 +40,7 @@ textarea { /* Mise en page de la zone de texte du label Description*/
 	width: 100%;
 }
 
-.header { /* Mise en page de l'entête */
+.header { /* Mise en page de l'entete */
 	height: 200px;
 	width: 90%;
 	background-image: url("../images/annonce.png");
@@ -49,10 +49,10 @@ textarea { /* Mise en page de la zone de texte du label Description*/
 	border: 1px solid black;
 }
 
-.header > h1 { /* Mise en page de la balise h1 de l'entête */
+.header > h1 { /* Mise en page de la balise h1 de l'entete */
 	position: absolute;
-	top: 145px;
-	left: 64%;
+	top: 100px;
+	left: 63%;
 }
 
 .buttonsHeader { /* Mise en page du Menu actions */
@@ -117,7 +117,7 @@ textarea { /* Mise en page de la zone de texte du label Description*/
 	margin-top: 5px;
 }
 
-.buttonSwitch:hover { /* Mise en page du texte du bouton Flip lorsqu'il est survolé */
+.buttonSwitch:hover { /* Mise en page du texte du bouton Flip lorsqu'il est survole */
 	font-weight: bold;
 }
 

@@ -20,14 +20,14 @@ function loadScript() {
 
 window.onload = loadScript;
 
-/*** Cette fonction vérifie que l'email est de la forme xxxx@yyyy.zzz ***/
+/*** Cette fonction verifie que l'email est de la forme xxxx@yyyy.zzz ***/
 function validateEmail(email)
 { 
   var re = /\S+@\S+\.\S+/; 
   return re.test(email) && email != ""; 
 }
 
-/*** Cette fonction vérifie qu'un champ n'est pas vide ***/
+/*** Cette fonction verifie qu'un champ n'est pas vide ***/
 function verifChamps(item, message, placeholder){
   if($(item).val() == "" || $(item).val() == placeholder)
   {
@@ -38,22 +38,22 @@ function verifChamps(item, message, placeholder){
   return true;
 }
 
-/*** Cette fonction fait appelle à la précédente pour vérifier les champs que l'on souhaite ***/
+/*** Cette fonction fait appelle a la precedente pour verifier les champs que l'on souhaite ***/
 function validate()
 {
-  if (!verifChamps("input[name='nom']", "Vous n'avez pas donné votre nom", "Saisissez un nom")) {  // On vérifie que le nom est rentré
+  if (!verifChamps("input[name='nom']", "Vous n'avez pas donné votre nom", "Saisissez un nom")) {  // On verifie que le nom est rentre
     return false;
   }
 
-  if (!verifChamps("input[name='prixPost']", "Vous n'avez pas donné le prix", "Saisissez un prix")) { // On vérifie qu'un prix est rentré
+  if (!verifChamps("input[name='prixPost']", "Vous n'avez pas donné le prix", "Saisissez un prix")) { // On verifie qu'un prix est rentre
     return false;
   }
 
-  if (!verifChamps("textarea[name='description']", "Vous n'avez pas donné la description", "")) { // On vérifie que la description est rentrée
+  if (!verifChamps("textarea[name='description']", "Vous n'avez pas donné la description", "")) { // On verifie que la description est rentree
     return false;
   } 
 
-  /* Vérification que la description fait au moins 5 caractères */
+  /* Verification que la description fait au moins 5 caracteres */
   var long1 = $("textarea[name='description']").val().length
   if(long1 < 5)
   {
@@ -72,7 +72,7 @@ function validate()
   return true;
 }
 
-/*** Cette fonction permet de cacher le panel ***/
+/*** Cette fonction permet de cacher/afficher un panel ***/
 function hideShowPanel(panel) {
   if ($(panel).css("visibility") == "hidden") {
     $('div[class^="panel"]').css("visibility", "hidden");
@@ -102,6 +102,7 @@ function placeholder(item, pholder){
 
 $(".header").corner("20px bottom");
 $(".content").corner("20px");
+$("#map_canvas").corner("20px");
 $('div[class^="panel"]').corner("5px");
 $(".buttonSwitch").corner("5px");
 $( 'div[class^="panel"]' ).draggable();
