@@ -2,13 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<link rel = "stylesheet" href = "css/design.css" type = "text/css"/>
-	<title>AdHub</title>
+	<link rel = "stylesheet" href = "css/design.css" type = "text/css"/> <!-- lien vers la feuille de style -->
+	<title>AdHub</title> 
 </head> 
 <body>
-	<div class="header">
-		<h1>AdHub by Aristochats Team</h1>
-		<div class="buttonsHeader">
+	<div class="header"> <!-- Entête du site -->
+		<h1>AdHub by Aristochats Team</h1> <!-- Titre important du site -->
+		<div class="buttonsHeader"> <!-- Menu actions -->
 			<div class="buttonFind">
 				<p>Trouver</p>
 			</div>
@@ -21,22 +21,22 @@
 		</div>
 	</div>
 	<div class="panelFind">
-		<form action="#">
+		<form action="#"> <!-- Formulaire "Trouver" -->
 			<table>
 				<tr>
 					<td>
-						<label for="mot">Mot Clé:</label>
+						<label for="mot">Mot Clé:</label> <!-- Label de Mot Clé -->
 					</td>
 					<td>
-						<input type="text" name="mot" id="mot" size="18"/>
+						<input type="text" name="mot" id="mot" size="18"/> <!-- Champ du label mot -->
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="categorie">Catégorie:</label>
+						<label for="categorie">Catégorie:</label> <!-- Label de Catégorie -->
 					</td>
 					<td>
-						<select id="categorie" name="categorie">
+						<select id="categorie" name="categorie"> <!-- Options du label Catégorie -->
 							<option>Toutes les catégories</option>
 							<option>Electronique</option>
 							<option>Electromenager</option>
@@ -49,10 +49,10 @@
 				</tr>
 				<tr>
 					<td>
-						<label for="prix"> Prix: </label>
+						<label for="prix"> Prix: </label> <!-- Label de Prix -->
 					</td>
 					<td>
-						<select id="prix" name="prix">
+						<select id="prix" name="prix"> <!-- Options du label Prix -->
 							<option>Tous les prix</option>
 							<option>Moins de 100$</option>
 							<option>Entre 100$ et 500$</option>
@@ -65,10 +65,10 @@
 				</tr>
 				<tr>
 					<td>
-						<label for="ville"> Ville: </label>
+						<label for="ville"> Ville: </label> <!-- Label de Ville -->
 					</td>
 					<td>
-						<select id="ville" name="ville">
+						<select id="ville" name="ville"> <!-- Options du label ville -->
 							<option>Toutes les villes</option>
 							<option>Trois-Rivières</option>
 							<option>Montréal</option>
@@ -78,49 +78,49 @@
 				</tr>
 				<tr>
 					<td>
-						<label id="trie" for="trier"> Trier par: </label>
+						<label id="trie" for="trier"> Trier par: </label> <!-- Label de Trier -->
 					</td>
 					<td>
-						<select id="trier" name="trier">
+						<select id="trier" name="trier"> <!-- Options du label Trier -->
 							<option>Distance</option>
 							<option>Prix</option>
 							<option>Catégorie</option>
 						</select>
 					</td>
 					<td>
-						<input type="submit" value="Chercher"/>
+						<input type="submit" value="Chercher"/> <!-- Bouton Cherche -->
 					</td>
 				</tr>									
 			</table>
 		</form>
 	</div>
 	<div class="panelPost">
-		<form id="panelPost" method="post" action= "" onsubmit="return validate()">
+		<form id="panelPost" method="post" action= "" onsubmit="return validate()"> <!-- Formulaire "Poster" -->
 			<table>
 
 				<tr>
 					<td>
-						<label for="nom">Nom:</label>
+						<label for="nom">Nom:</label> <!-- Label Nom -->
 					</td>
 					<td>
-						<input type="text" name="nom" id="nom" size="18" />
+						<input type="text" name="nom" id="nom" size="18" /> <!-- Champ pour remplir le nom -->
 					</td>
 				</tr>
 
 				<tr>
 					<td>
-						<label for="prix">Prix:</label> 
+						<label for="prix">Prix:</label> <!-- Label Prix -->
 					</td>
 					<td>
-						<input type="text" name="prixPost" id="prixPost" size="18" />
+						<input type="text" name="prixPost" id="prixPost" size="18" /> <!-- Champ pour remplir le prix -->
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="categorie"> Catégorie: </label>
+						<label for="categorie"> Catégorie: </label> <!-- Label Catégorie -->
 					</td>
 					<td>
-						<select id="categoriePost" name="categoriePost">
+						<select id="categoriePost" name="categoriePost"> <!-- Options du label Catégorie -->
 							<option>Electronique</option>
 							<option>Electromenager</option>
 							<option>Logement</option>
@@ -132,10 +132,10 @@
 				</tr>
 				<tr>
 					<td>
-						<label for="ville"> Ville : </label>
+						<label for="ville"> Ville : </label> <!-- Label Ville -->
 					</td>
 					<td>
-						<select id="villePost" name="ville">
+						<select id="villePost" name="ville"> <!-- Options du Label Ville du formulaire Poster -->
 							<option>Toutes les villes</option>
 							<option>Trois-Rivières</option>
 							<option>Montréal</option>
@@ -146,31 +146,31 @@
 
 				<tr>
 					<td>
-						<label for="description">Description: <br />
+						<label for="description">Description: <br /> <!-- Label Description -->
 						</label> 
 					</td>
 					<td>
-						<textarea  name="description" id="description" rows="6" cols="30" ></textarea>
+						<textarea  name="description" id="description" rows="6" cols="30" ></textarea> <!-- Champ pour remplir la description de l'objet -->
 					</td>
 				</tr>
 
 				<tr>
 					<td>
-						<label for="email">Email:</label>
+						<label for="email">Email:</label> <!-- Label email -->
 					</td>
 					<td>
-						<input type="text" name="email" id="email" size="18" />
+						<input type="text" name="email" id="email" size="18" /> <!-- Champ pour remplir l'email -->
 					</td>
 				</tr>
 
 				<tr>
 					<td>
-						<input type="reset" value="Réinitialiser" />
+						<input type="reset" value="Réinitialiser" /> <!-- Bouton "Réinitialiser -->
 					</td>
 					<td>
 					</td>
 					<td>
-						<input id="postButton" type="submit" value="Publier" />
+						<input id="postButton" type="submit" value="Publier" /> <!-- Bouton "Publier" -->
 					</td>
 				</tr>
 			</table>
@@ -178,7 +178,7 @@
 	</div>
 	<div class="content">
 		<div class="frontView">
-			<table>
+			<table> <!-- Annonces du site -->
 				<tr>
 					<th>Photo</th>
 					<th>Categorie</th> 
@@ -186,21 +186,21 @@
 					<th>Ville</th>
 					<th>Description</th>
 				</tr>
-				<tr>
+				<tr> <!-- Annonce 1 -->
 					<td><img src="images/128x128/protection.png" alt="Protection picture" /></td>
 					<td>Electromenager</td> 
 					<td>$125</td>
 					<td>Trois-Rivières</td>
 					<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</td>
 				</tr>
-				<tr>
+				<tr><!-- Annonce 2 -->
 					<td><img src="images/128x128/home.png" alt="Home picture" /></td>
 					<td>Logement</td> 
 					<td>$250 000</td>
 					<td>Toulouse</td>
 					<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</td>
 				</tr>
-				<tr>
+				<tr><!-- Annonce 3 -->
 					<td><img src="images/128x128/photo_camera.png" alt="Camera picture" /></td>
 					<td>Électronique</td> 
 					<td>$75</td>
@@ -208,11 +208,12 @@
 					<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</td>
 				</tr>
 			</table>
-			<div class="buttonSwitch quickFlipCta">
+			
+			<div class="buttonSwitch quickFlipCta"> <!-- Bouton Flip -->
 				<p>Carte</p>
 			</div>
 		</div>
-		<div class="backView">
+		<div class="backView"> <!-- Page quand le bouton Flip est cliqué -->
 			<div id="map_canvas"></div>
 			<div class="buttonSwitch quickFlipCta">
 				<p>Liste</p>
@@ -220,13 +221,14 @@
 		</div>
 	</div>
 	<p>
-		<a href="http://validator.w3.org/check?uri=referer">
+		<a href="http://validator.w3.org/check?uri=referer"> <!-- Lien vers la vérification w3 du contenu xhtml -->
 			<img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" />
 		</a>
-		<a href="http://jigsaw.w3.org/css-validator/check/referer">
+		<a href="http://jigsaw.w3.org/css-validator/check/referer"> <!-- Lien vers la vérification w3 du ccs -->
 			<img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS Valide !" />
 		</a>
 	</p>
+							<!-- Appels des scripts JS -->
 	<script type="text/javascript" src="javascript/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="javascript/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="javascript/jquery.quickflip.min.js"></script>

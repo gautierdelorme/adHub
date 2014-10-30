@@ -1,46 +1,46 @@
-html, body{
+html, body{ /* Mise en page du contenu et du corps */
 	height: 100%;
 	margin: 0;
 	padding: 0;
 }
 
-#map_canvas {
+#map_canvas { /* Mise en page de la carte Google Map */
     height: 100%;
     width: 100%;
 }
 
-.panelFind input {
+.panelFind input { /* Mise en page des inputs dans le formulaire Trouver */
 	width:150px;
 }
-.panelFind select {
+.panelFind select { /* Mise en page des selects dans le formulaire Trouver */
 	width:150px;
 }
 
-.panelPost input {
+.panelPost input { /* Mise en page des inputs dans le formulaire Poster */
 	width:130px;
 }
 
-.panelPost select {
+.panelPost select { /* Mise en page des inputs dans le formulaire Poster */
 	width:130px;
 }
 
-.panelFind input[type="submit"] {
+.panelFind input[type="submit"] { /* Mise en page du bouton Chercher du formulaire Trouver */
 	width: auto;
 }
 
-.panelPost input[type="submit"] {
+.panelPost input[type="submit"] { /* Mise en page du bouton Publier du formulaire Poster */
 	width: auto;
 }
 
-.panelPost input[type="reset"] {
+.panelPost input[type="reset"] { /* Mise en page du bouton Réinitialiser du formulaire Poster */
 	width: auto;
 }
 
-textarea {
+textarea { /* Mise en page de la zone de texte du label Description*/
 	width: 100%;
 }
 
-.header {
+.header { /* Mise en page de l'entête */
 	height: 200px;
 	width: 90%;
 	background-image: url("../images/annonce.png");
@@ -49,20 +49,20 @@ textarea {
 	border: 1px solid black;
 }
 
-.header > h1 {
+.header > h1 { /* Mise en page de la balise h1 de l'entête */
 	position: absolute;
 	top: 145px;
 	left: 64%;
 }
 
-.buttonsHeader {
+.buttonsHeader { /* Mise en page du Menu actions */
 	display: inline-block;
 	background-color: white;
 	margin-top: 190px;
 	margin-left: 30px;
 }
 
-.buttonsHeader > div {
+.buttonsHeader > div { /* Mise en page des boutons du menu */
 	background-color: white;
 	display: inline-block;
 	background-repeat: no-repeat;
@@ -73,25 +73,25 @@ textarea {
 	font-weight: bold;
 }
 
-.buttonsHeader > div > p {
+.buttonsHeader > div > p { /* Mise en page des textes des boutons du menu actions */
 	margin-left: 35px;
 	margin-top: 5px;
 }
 
-.buttonFind {
+.buttonFind { /* Mise en page de l'image du menu Trouver */
 	margin-left: 5px;
 	background-image: url("../images/24x24/zoom.png");
 }
 
-.buttonPost {
+.buttonPost { /* Mise en page de l'image du menu Poster */
 	background-image: url("../images/24x24/new_page.png");
 }
 
-.buttonAccount {
+.buttonAccount { /* Mise en page de l'image du menu Compte */
 	background-image: url("../images/24x24/user.png");
 }
 
-.content {
+.content { /* Mise en page du contenu */
 	height: 100%;
 	width: 90%;
 	background-repeat: repeat-x;
@@ -99,7 +99,7 @@ textarea {
 	border: 1px solid black;
 }
 
-.buttonSwitch {
+.buttonSwitch { /* Mise en page du bouton Flip */
 	background-image: url("../images/24x24/globe.png");
 	background-color: white;
 	background-repeat: no-repeat;
@@ -112,22 +112,22 @@ textarea {
 	padding-right : 5px;
 }
 
-.buttonSwitch > p {
+.buttonSwitch > p { /* Mise en page du texte du bouton Flip */
 	margin-left: 35px;
 	margin-top: 5px;
 }
 
-.buttonSwitch:hover {
+.buttonSwitch:hover { /* Mise en page du texte du bouton Flip lorsqu'il est survolé */
 	font-weight: bold;
 }
 
-.frontView > table {
+.frontView > table { /* Mise en page des formulaires */
 	width: 100%;
 	margin : 0px 10px 0px 0px;
 	border-collapse: collapse;
 }
 
-.frontView > table td {
+.frontView > table td { /* Mise en page des cellules */
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
 	text-align: center;
@@ -147,12 +147,12 @@ textarea {
 	text-align: center;
 }
 
-.backView > .buttonSwitch {
+.backView > .buttonSwitch { /* Mise en page de la deuxième image du bouton Flip */
 	background-image: url("../images/24x24/full_page.png");
 }
 
 
-div[class^="panel"] {
+div[class^="panel"] { /* Mise en page du cadre  des formulaires */
 	width: 350px;
 	background-color: white;
 	border: 1px solid black;

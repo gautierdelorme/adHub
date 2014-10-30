@@ -1,3 +1,4 @@
+/*** Cette fonction initialise la carte ***/
 var map;
 function initialize() {
   var mapOptions = {
@@ -8,6 +9,7 @@ function initialize() {
       mapOptions);
 }
 
+/*** Cette fonction charge la carte dans la page ***/
 function loadScript() {
   var script = document.createElement('script');
   script.type = 'text/javascript';
@@ -18,14 +20,14 @@ function loadScript() {
 
 window.onload = loadScript;
 
-// Validation de l'Email dans le formulaire Post
+/*** Cette fonction vérifie que l'email est de la forme xxxx@yyyy.zzz ***/
 function validateEmail(email)
 { 
   var re = /\S+@\S+\.\S+/; 
   return re.test(email) && email != ""; 
 }
 
-// Validation des champs du formulaire
+/*** Cette fonction vérifie qu'un champ n'est pas vide ***/
 function verifChamps(item, message, placeholder){
   if($(item).val() == "" || $(item).val() == placeholder)
   {
@@ -36,19 +38,20 @@ function verifChamps(item, message, placeholder){
   return true;
 }
 
+/*** Cette fonction fait appelle à la précédente pour vérifier les champs que l'on souhaite ***/
 function validate()
 {
-  if (!verifChamps("input[name='nom']", "Vous n'avez pas donné votre nom", "Saisissez un nom")) {
+  if (!verifChamps("input[name='nom']", "Vous n'avez pas donné votre nom", "Saisissez un nom")) {  // On vérifie que le nom est rentré
     return false;
   }
 
-  if (!verifChamps("input[name='prixPost']", "Vous n'avez pas donné le prix", "Saisissez un prix")) {
+  if (!verifChamps("input[name='prixPost']", "Vous n'avez pas donné le prix", "Saisissez un prix")) { // On vérifie qu'un prix est rentré
     return false;
   }
 
-  if (!verifChamps("textarea[name='description']", "Vous n'avez pas donné la description", "")) {
+  if (!verifChamps("textarea[name='description']", "Vous n'avez pas donné la description", "")) { // On vérifie que la description est rentrée
     return false;
-  }
+  } 
 
   /* Vérification que la description fait au moins 5 caractères */
   var long1 = $("textarea[name='description']").val().length
@@ -59,7 +62,7 @@ function validate()
     return false;
   }
 
-  if (!validateEmail($("input[name='email']").val()))
+  if (!validateEmail($("input[name='email']").val())) // Affiche un message d'erreur si l'email n'est pas au bon format
   {
     alert("Votre email n'est pas bon.");
     $("input[name='email']").focus()
@@ -69,6 +72,7 @@ function validate()
   return true;
 }
 
+/*** Cette fonction permet de cacher le panel ***/
 function hideShowPanel(panel) {
   if ($(panel).css("visibility") == "hidden") {
     $('div[class^="panel"]').css("visibility", "hidden");
@@ -79,6 +83,7 @@ function hideShowPanel(panel) {
   }
 }
 
+/*** Cette fonction permet de placer un "placeholder" dans les cases du formulaire ***/
 function placeholder(item, pholder){
   $(item).val(pholder);
   $(item).css("color","gray")
@@ -111,16 +116,16 @@ $( document ).ready(function() {
     hideShowPanel(".panelPost");
     event.preventDefault();
   });
-  placeholder("input[name='mot']", "Saisissez un mot clef")
-  placeholder("input[name='email']", "Saisissez un email")
-  placeholder("input[name='prixPost']", "Saisissez un prix")
-  placeholder("input[name='nom']", "Saisissez un nom")
+  placeholder("input[name='mot']", "Saisissez un mot clef") // Affiche un placeholder dans le champ mot clef
+  placeholder("input[name='email']", "Saisissez un email")  // Affiche un placeholder dans le champ email
+  placeholder("input[name='prixPost']", "Saisissez un prix")// Affiche un placeholder dans le champ prix
+  placeholder("input[name='nom']", "Saisissez un nom")		// Affiche un placeholder dans le champ nom
 
   $( ".buttonSwitch" ).click(function() {
     console.log("yo");
     center = map.getCenter()
     setTimeout(function() {
-    google.maps.event.trigger(map,'resize');map.setCenter(center);
+    google.maps.event.trigger(map,'resize');map.setCenter(center); // adapte la carte au conteneur
   }, 500);
   });
 });
