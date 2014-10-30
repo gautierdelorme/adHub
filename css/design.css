@@ -10,18 +10,18 @@ html, body{
 }
 
 .panelFind input {
-	width:140px;
+	width:150px;
 }
 .panelFind select {
-	width:140px;
+	width:150px;
 }
 
 .panelPost input {
-	width:110px;
+	width:130px;
 }
 
 .panelPost select {
-	width:110px;
+	width:130px;
 }
 
 .panelFind input[type="submit"] {
@@ -30,7 +30,6 @@ html, body{
 
 .panelPost input[type="submit"] {
 	width: auto;
-	margin-left: 120px;
 }
 
 .panelPost input[type="reset"] {
@@ -154,6 +153,7 @@ textarea {
 
 
 div[class^="panel"] {
+	width: 350px;
 	background-color: white;
 	border: 1px solid black;
 	visibility: hidden;
