@@ -19,6 +19,7 @@ html, body{
 .panelPost input {
 	width:110px;
 }
+
 .panelPost select {
 	width:110px;
 }
@@ -29,11 +30,15 @@ html, body{
 
 .panelPost input[type="submit"] {
 	width: auto;
-	margin-left: 140px;
+	margin-left: 120px;
 }
 
 .panelPost input[type="reset"] {
 	width: auto;
+}
+
+textarea {
+	width: 100%;
 }
 
 .header {
@@ -153,7 +158,6 @@ div[class^="panel"] {
 	border: 1px solid black;
 	visibility: hidden;
 	opacity: 0.5;
-    filter: alpha(opacity=50); /* IE.... */
     position: absolute;
     top: 100px;
     left: 70%;
@@ -163,5 +167,4 @@ div[class^="panel"] {
 
 div[class^="panel"]:hover {
 	opacity: 1;
-    filter: alpha(opacity=100); /* IE.... */
 }
