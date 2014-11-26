@@ -94,7 +94,6 @@ textarea { /* Mise en page de la zone de texte du label Description*/
 .content { /* Mise en page du contenu */
 	height: 100%;
 	width: 90%;
-	background-repeat: repeat-x;
 	margin: 50px auto;
 	border: 1px solid black;
 }
@@ -167,4 +166,10 @@ div[class^="panel"] { /* Mise en page du cadre  des formulaires */
 
 div[class^="panel"]:hover {
 	opacity: 1;
+}
+
+#formLanguage {
+	position: absolute;
+	top: 0;
+	left: 90%;
 }

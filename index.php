@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?php
+session_start();
+if (!isset($_COOKIE['language'])) {
+	setcookie("language", "en", time()+3600*24);
+	$_COOKIE['language'] = "en";
+}
+echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -6,7 +12,16 @@
 	<title>AdHub</title> 
 </head> 
 <body>
+<?php
+$mysqli = new mysqli("localhost", "root", "root", "adHub");
+if ($mysqli->connect_errno) {
+	echo "Echec lors de la connexion à MySQL : (".$mysqli-> connect_errno.") ".$mysqli->connect_error;
+}
+?>
 	<div class="header"> <!-- Entete du site -->
+		<form id="formLanguage" action="changeLanguage.php" method="post">
+			<input type="submit" name="submitLanguage"/>
+		</form>
 		<h1>AdHub by Aristochats Team</h1> <!-- Titre important du site -->
 		<div class="buttonsHeader"> <!-- Menu actions -->
 			<div class="buttonFind">
@@ -180,33 +195,28 @@
 		<div class="frontView">
 			<table> <!-- Annonces du site -->
 				<tr>
-					<th>Photo</th>
-					<th>Categorie</th> 
-					<th>Prix</th>
-					<th>Ville</th>
-					<th>Description</th>
+					<?php
+					$results = $mysqli->query("SELECT * FROM site_menu WHERE id > 3");
+					while ($row = $results->fetch_assoc()) {
+						echo "<th>".$row['item_'.$_COOKIE['language']]."</th>";
+					}
+					?>
 				</tr>
-				<tr> <!-- Annonce 1 -->
-					<td><img src="images/128x128/protection.png" alt="Protection picture" /></td>
-					<td>Electromenager</td> 
-					<td>$125</td>
-					<td>Trois-Rivières</td>
-					<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</td>
-				</tr>
-				<tr><!-- Annonce 2 -->
-					<td><img src="images/128x128/home.png" alt="Home picture" /></td>
-					<td>Logement</td> 
-					<td>$250 000</td>
-					<td>Toulouse</td>
-					<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</td>
-				</tr>
-				<tr><!-- Annonce 3 -->
-					<td><img src="images/128x128/photo_camera.png" alt="Camera picture" /></td>
-					<td>Électronique</td> 
-					<td>$75</td>
-					<td>Montreal</td>
-					<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</td>
-				</tr>
+				<?php
+				$results = $mysqli->query("SELECT * FROM site_annonce WHERE id > 3");
+				while ($row = $results->fetch_assoc()) {
+					echo "<tr>\n";
+					echo "<td><img src=\"images/128x128/".$row['category_option_name'].".png\" alt=\"".$row['title_'.$_COOKIE['language']]."\" /></td>\n";
+					$resultsCat = $mysqli->query("SELECT * FROM site_option WHERE option_name = '".$row['category_option_name']."'");
+					while ($rowCat = $resultsCat->fetch_assoc()) {
+						echo "<td>".$rowCat['option_'.$_COOKIE['language']]."</td>\n";
+					}
+					echo "<td>$".$row['price']."</td>\n";
+					echo "<td>Toulouse</td>\n";
+					echo "<td>$".$row['description_'.$_COOKIE['language']]."</td>\n";
+					echo "<tr>\n";
+				}
+				?>
 			</table>
 			
 			<div class="buttonSwitch quickFlipCta"> <!-- Bouton Flip -->
