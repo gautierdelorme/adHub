@@ -268,7 +268,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 					?>
 				</tr>
 				<?php
-				$results = $mysqli->query("SELECT * FROM site_annonce WHERE id > 3");
+				$results = $mysqli->query("SELECT * FROM site_annonce ORDER BY date DESC LIMIT 3");
 				while ($row = $results->fetch_assoc()) {
 					echo "<tr>\n";
 					echo "<td><img src=\"images/128x128/".$row['category_option_name'].".png\" alt=\"".$row['title_'.$_COOKIE['language']]."\" /></td>\n";
@@ -278,6 +278,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 					}
 					echo "<td>$".$row['price']."</td>\n";
 					echo "<td>Toulouse</td>\n";
+					echo "<td>".$row['title_'.$_COOKIE['language']]."</td>\n";
 					echo "<td>".$row['description_'.$_COOKIE['language']]."</td>\n";
 					echo "<tr>\n";
 				}
