@@ -32,8 +32,17 @@ html, body{ /* Mise en page du contenu et du corps */
 	width: auto;
 }
 
+.panelPost{ /* Mise en page du bouton Réinitialiser du formulaire Poster */
+	width: auto;
+}
+
 .panelPost input[type="reset"] { /* Mise en page du bouton Réinitialiser du formulaire Poster */
 	width: auto;
+}
+
+.panelAccount input[type="submit"] { /* Mise en page du bouton Chercher du formulaire Trouver */
+	position: absolute;
+	right: 5px;
 }
 
 textarea { /* Mise en page de la zone de texte du label Description*/
@@ -47,6 +56,8 @@ textarea { /* Mise en page de la zone de texte du label Description*/
 	background-repeat: repeat-x;
 	margin: 0 auto;
 	border: 1px solid black;
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
 }
 
 .header > h1 { /* Mise en page de la balise h1 de l'entete */
@@ -91,6 +102,10 @@ textarea { /* Mise en page de la zone de texte du label Description*/
 	background-image: url("../images/24x24/user.png");
 }
 
+.buttonAccountConnected { /* Mise en page de l'image du menu Compte */
+	background-image: url("../images/24x24/comment.png");
+}
+
 .content { /* Mise en page du contenu */
 	height: 100%;
 	width: 90%;
@@ -118,6 +133,11 @@ textarea { /* Mise en page de la zone de texte du label Description*/
 
 .buttonSwitch:hover { /* Mise en page du texte du bouton Flip lorsqu'il est survole */
 	font-weight: bold;
+}
+
+.frontView {
+	width: 100%;
+	height: 100%;
 }
 
 .frontView > table { /* Mise en page des formulaires */
@@ -164,6 +184,12 @@ div[class^="panel"] { /* Mise en page du cadre  des formulaires */
     z-index: 2000;
 }
 
+.panelAccount {
+	width: 250px !important;
+	padding: 5px 5px 5px 5px;
+	height : 70px;
+}
+
 div[class^="panel"]:hover {
 	opacity: 1;
 }
@@ -171,5 +197,5 @@ div[class^="panel"]:hover {
 #formLanguage {
 	position: absolute;
 	top: 0;
-	left: 90%;
+	left: 0;
 }

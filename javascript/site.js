@@ -117,13 +117,16 @@ $( document ).ready(function() {
     hideShowPanel(".panelPost");
     event.preventDefault();
   });
+  $('div[class^="buttonAccount"]').click(function( event ) {
+    hideShowPanel(".panelAccount");
+    event.preventDefault();
+  });
   placeholder("input[name='mot']", "Saisissez un mot clef") // Affiche un placeholder dans le champ mot clef
   placeholder("input[name='email']", "Saisissez un email")  // Affiche un placeholder dans le champ email
   placeholder("input[name='prixPost']", "Saisissez un prix")// Affiche un placeholder dans le champ prix
   placeholder("input[name='nom']", "Saisissez un nom")		// Affiche un placeholder dans le champ nom
 
   $( ".buttonSwitch" ).click(function() {
-    console.log("yo");
     center = map.getCenter()
     setTimeout(function() {
     google.maps.event.trigger(map,'resize');map.setCenter(center); // adapte la carte au conteneur

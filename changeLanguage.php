@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_POST["submitLanguage"])) {
 	if ($_COOKIE['language'] == "fr") {
 		setcookie("language", "en", time()+3600*24);

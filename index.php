@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "mysql.php";
 if (!isset($_COOKIE['language'])) {
 	setcookie("language", "en", time()+3600*24);
 	$_COOKIE['language'] = "en";
@@ -12,35 +13,51 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 	<title>AdHub</title> 
 </head> 
 <body>
-<?php
-$mysqli = new mysqli("localhost", "root", "root", "adHub");
-if ($mysqli->connect_errno) {
-	echo "Echec lors de la connexion à MySQL : (".$mysqli-> connect_errno.") ".$mysqli->connect_error;
-}
-?>
 	<div class="header"> <!-- Entete du site -->
 		<form id="formLanguage" action="changeLanguage.php" method="post">
-			<input type="submit" name="submitLanguage"/>
+			<input src="images/<? echo $_COOKIE['language']; ?>.jpg" type="image" value="submit" name="submitLanguage"/>
 		</form>
 		<h1>AdHub by Aristochats Team</h1> <!-- Titre important du site -->
 		<div class="buttonsHeader"> <!-- Menu actions -->
 			<div class="buttonFind">
-				<p>Trouver</p>
+				<p>
+					<?php
+					$results = $mysqli->query("SELECT * FROM site_menu WHERE id <= 3");
+					$menuValue = array();
+					while ($row = $results->fetch_assoc()) {
+						array_push($menuValue, $row['item_'.$_COOKIE['language']]);
+					}
+					echo $menuValue[0];
+					?>
+				</p>
 			</div>
 			<div class="buttonPost">
-				<p>Poster</p>
+				<p><?php echo $menuValue[1]; ?></p>
 			</div>
+			<?php
+			if (isset($_SESSION["username"])) {
+				echo "<div class=\"buttonAccountConnected\"><p>".$_SESSION["username"]."</p></div>";
+			} else { ?>
 			<div class="buttonAccount">
-				<p>Compte</p>
+				<p><?php echo $menuValue[2]; ?></p>
 			</div>
+			<?php
+			}?>
 		</div>
 	</div>
+	<?php
+	$results = $mysqli->query("SELECT * FROM site_option WHERE option_type = 'panel'");
+	$panelValue = array();
+	while ($row = $results->fetch_assoc()) {
+		array_push($panelValue, $row['option_'.$_COOKIE['language']]);
+	}
+	?>
 	<div class="panelFind">
 		<form action="#"> <!-- Formulaire "Trouver" -->
 			<table>
 				<tr>
 					<td>
-						<label for="mot">Mot Clé:</label> <!-- Label de Mot Cle -->
+						<label for="mot"><? echo $panelValue[1];?></label> <!-- Label de Mot Cle -->
 					</td>
 					<td>
 						<input type="text" name="mot" id="mot" size="18"/> <!-- Champ du label mot -->
@@ -48,62 +65,73 @@ if ($mysqli->connect_errno) {
 				</tr>
 				<tr>
 					<td>
-						<label for="categorie">Catégorie:</label> <!-- Label de Categorie -->
+						<label for="categorie"><? echo $panelValue[0];?>:</label> <!-- Label de Categorie -->
 					</td>
 					<td>
 						<select id="categorie" name="categorie"> <!-- Options du label Categorie -->
-							<option>Toutes les catégories</option>
-							<option>Electronique</option>
-							<option>Electromenager</option>
-							<option>Logement</option>
-							<option>Mobilier</option>
-							<option>Service</option>
-							<option>Voiture</option>
+							<?php
+							$results = $mysqli->query("SELECT * FROM site_option WHERE option_type = 'category' ORDER BY id DESC");
+							while ($row = $results->fetch_assoc()) {
+								echo "<option>".$row['option_'.$_COOKIE['language']]."</option>";
+							}
+							?>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="prix"> Prix: </label> <!-- Label de Prix -->
+						<label for="prix"> <? echo $panelValue[2];?>: </label> <!-- Label de Prix -->
 					</td>
 					<td>
 						<select id="prix" name="prix"> <!-- Options du label Prix -->
-							<option>Tous les prix</option>
-							<option>Moins de 100$</option>
-							<option>Entre 100$ et 500$</option>
-							<option>Entre 500$ et 1000$</option>
-							<option>Entre 1000$ et 5000$</option>
-							<option>Entre 5000$ et 10000$</option>
-							<option>Plus de 10000$</option>
+							<?php
+							$results = $mysqli->query("SELECT * FROM site_option WHERE option_type = 'price'");
+							$priceArray = array();
+							while ($row = $results->fetch_assoc()) {
+								array_push($priceArray, $row['option_'.$_COOKIE['language']]);
+							}
+							?>
+							<option><? echo $priceArray[0];?></option>
+							<option><? echo $priceArray[1];?> 100$</option>
+							<option><? echo $priceArray[2];?> 100$ <? echo $priceArray[3];?> 500$</option>
+							<option><? echo $priceArray[2];?> 500$ <? echo $priceArray[3];?> 1000$</option>
+							<option><? echo $priceArray[2];?> 1000$ <? echo $priceArray[3];?> 5000$</option>
+							<option><? echo $priceArray[2];?> 5000$ <? echo $priceArray[3];?> 10000$</option>
+							<option><? echo $priceArray[4];?> 10000$</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="ville"> Ville: </label> <!-- Label de Ville -->
+						<label for="ville"> <? echo $panelValue[3];?>: </label> <!-- Label de Ville -->
 					</td>
 					<td>
 						<select id="ville" name="ville"> <!-- Options du label ville -->
-							<option>Toutes les villes</option>
-							<option>Trois-Rivières</option>
-							<option>Montréal</option>
-							<option>Québec</option>
+							<?php
+							$results = $mysqli->query("SELECT * FROM site_option WHERE option_type = 'city'");
+							while ($row = $results->fetch_assoc()) {
+								echo "<option>".$row['option_'.$_COOKIE['language']]."</option>";
+							}
+							?>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label id="trie" for="trier"> Trier par: </label> <!-- Label de Trier -->
+						<label id="trie" for="trier"> <? echo $panelValue[8];?>: </label> <!-- Label de Trier -->
 					</td>
 					<td>
 						<select id="trier" name="trier"> <!-- Options du label Trier -->
-							<option>Distance</option>
-							<option>Prix</option>
-							<option>Catégorie</option>
+							<?php
+							$results = $mysqli->query("SELECT * FROM site_option WHERE option_type = 'sort'");
+							while ($row = $results->fetch_assoc()) {
+								echo "<option>".$row['option_'.$_COOKIE['language']]."</option>";
+							}
+							?>
 						</select>
 					</td>
 					<td>
-						<input type="submit" value="Chercher"/> <!-- Bouton Cherche -->
+						<input type="submit" value="<? echo $panelValue[5];?>"/> <!-- Bouton Cherche -->
 					</td>
 				</tr>									
 			</table>
@@ -115,7 +143,7 @@ if ($mysqli->connect_errno) {
 
 				<tr>
 					<td>
-						<label for="nom">Nom:</label> <!-- Label Nom -->
+						<label for="nom"><? echo $panelValue[9];?>:</label> <!-- Label Nom -->
 					</td>
 					<td>
 						<input type="text" name="nom" id="nom" size="18" /> <!-- Champ pour remplir le nom -->
@@ -124,7 +152,7 @@ if ($mysqli->connect_errno) {
 
 				<tr>
 					<td>
-						<label for="prix">Prix:</label> <!-- Label Prix -->
+						<label for="prix"><? echo $panelValue[2];?>:</label> <!-- Label Prix -->
 					</td>
 					<td>
 						<input type="text" name="prixPost" id="prixPost" size="18" /> <!-- Champ pour remplir le prix -->
@@ -132,36 +160,37 @@ if ($mysqli->connect_errno) {
 				</tr>
 				<tr>
 					<td>
-						<label for="categorie"> Catégorie: </label> <!-- Label Categorie -->
+						<label for="categorie"> <? echo $panelValue[0];?>: </label> <!-- Label Categorie -->
 					</td>
 					<td>
 						<select id="categoriePost" name="categoriePost"> <!-- Options du label Categorie -->
-							<option>Electronique</option>
-							<option>Electromenager</option>
-							<option>Logement</option>
-							<option>Mobilier</option>
-							<option>Service</option>
-							<option>Voiture</option>
+							<?php
+							$results = $mysqli->query("SELECT * FROM site_option WHERE option_type = 'category' ORDER BY id DESC");
+							while ($row = $results->fetch_assoc()) {
+								echo "<option>".$row['option_'.$_COOKIE['language']]."</option>";
+							}
+							?>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="ville"> Ville : </label> <!-- Label Ville -->
+						<label for="ville"> <? echo $panelValue[3];?>: </label> <!-- Label de Ville -->
 					</td>
 					<td>
-						<select id="villePost" name="ville"> <!-- Options du Label Ville du formulaire Poster -->
-							<option>Toutes les villes</option>
-							<option>Trois-Rivières</option>
-							<option>Montréal</option>
-							<option>Québec</option>
+						<select id="ville" name="ville"> <!-- Options du label ville -->
+							<?php
+							$results = $mysqli->query("SELECT * FROM site_option WHERE option_type = 'city'");
+							while ($row = $results->fetch_assoc()) {
+								echo "<option>".$row['option_'.$_COOKIE['language']]."</option>";
+							}
+							?>
 						</select>
 					</td>
 				</tr>
-
 				<tr>
 					<td>
-						<label for="description">Description: <br /> <!-- Label Description -->
+						<label for="description"><? echo $panelValue[4];?>: <br /> <!-- Label Description -->
 						</label> 
 					</td>
 					<td>
@@ -180,16 +209,52 @@ if ($mysqli->connect_errno) {
 
 				<tr>
 					<td>
-						<input type="reset" value="Réinitialiser" /> <!-- Bouton "Reinitialiser -->
+						<input type="reset" value="<? echo $panelValue[7];?>" /> <!-- Bouton "Reinitialiser -->
 					</td>
 					<td>
 					</td>
 					<td>
-						<input id="postButton" type="submit" value="Publier" /> <!-- Bouton "Publier" -->
+						<input id="postButton" type="submit" value="<? echo $panelValue[6];?>" /> <!-- Bouton "Publier" -->
 					</td>
 				</tr>
 			</table>
 		</form>
+	</div>
+	<div class="panelAccount">
+	<?php
+	if (isset($_SESSION["username"])) {
+		echo $_SESSION["username"];?>
+		<form action="connexion.php" method="post"> <!-- Formulaire "Compte" -->
+			<input type="submit" value="Logout"/> <!-- Bouton Cherche -->
+		</form>
+	<?} else { ?>
+		<form action="connexion.php" method="post"> <!-- Formulaire "Compte" -->
+			<table>
+				<tr>
+					<td>
+						<label for="username">Username:</label> <!-- Label de Mot Cle -->
+					</td>
+					<td>
+						<input type="text" name="username" id="username" size="18"/> <!-- Champ du label mot -->
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="password">Password:</label> <!-- Label de Categorie -->
+					</td>
+					<td>
+						<input type="password" name="password" id="password" size="18"/> <!-- Champ du label mot -->
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="submit" value="Login"/> <!-- Bouton Cherche -->
+					</td>
+				</tr>									
+			</table>
+		</form>
+	<?php
+	} ?>
 	</div>
 	<div class="content">
 		<div class="frontView">
@@ -213,7 +278,7 @@ if ($mysqli->connect_errno) {
 					}
 					echo "<td>$".$row['price']."</td>\n";
 					echo "<td>Toulouse</td>\n";
-					echo "<td>$".$row['description_'.$_COOKIE['language']]."</td>\n";
+					echo "<td>".$row['description_'.$_COOKIE['language']]."</td>\n";
 					echo "<tr>\n";
 				}
 				?>
