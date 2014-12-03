@@ -103,22 +103,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 				</tr>
 				<tr>
 					<td>
-						<label for="ville"> <? echo $panelValue[3];?>: </label> <!-- Label de Ville -->
-					</td>
-					<td>
-						<select id="ville" name="ville"> <!-- Options du label ville -->
-							<?php
-							$results = $mysqli->query("SELECT * FROM site_option WHERE option_type = 'city'");
-							while ($row = $results->fetch_assoc()) {
-								echo "<option>".$row['option_'.$_COOKIE['language']]."</option>";
-							}
-							?>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label id="trie" for="trier"> <? echo $panelValue[8];?>: </label> <!-- Label de Trier -->
+						<label id="trie" for="trier"> <? echo $panelValue[7];?>: </label> <!-- Label de Trier -->
 					</td>
 					<td>
 						<select id="trier" name="trier"> <!-- Options du label Trier -->
@@ -131,22 +116,39 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 						</select>
 					</td>
 					<td>
-						<input type="submit" value="<? echo $panelValue[5];?>"/> <!-- Bouton Cherche -->
+						<input type="submit" value="<? echo $panelValue[4];?>"/> <!-- Bouton Cherche -->
 					</td>
 				</tr>									
 			</table>
 		</form>
 	</div>
 	<div class="panelPost">
-		<form id="panelPost" method="post" action= "" onsubmit="return validate()"> <!-- Formulaire "Poster" -->
+		<form id="panelPost" method="post" action= "post.php"> <!-- Formulaire "Poster" -->
 			<table>
 
 				<tr>
 					<td>
-						<label for="nom"><? echo $panelValue[9];?>:</label> <!-- Label Nom -->
+						<label for="nomEnglish"><?
+						echo $panelValue[8]." ";
+						echo ($_COOKIE['language'] == "en") ? $panelValue[10]: $panelValue[10];
+						?>
+						:</label> <!-- Label Nom -->
 					</td>
 					<td>
-						<input type="text" name="nom" id="nom" size="18" /> <!-- Champ pour remplir le nom -->
+						<input type="text" name="nomEnglish" id="nomEnglish" size="18" /> <!-- Champ pour remplir le nom -->
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<label for="nomFrench"><?
+						echo $panelValue[8]." ";
+						echo ($_COOKIE['language'] == "en") ? $panelValue[9]: $panelValue[9];
+						?>
+						:</label> <!-- Label Nom -->
+					</td>
+					<td>
+						<input type="text" name="nomFrench" id="nomFrench" size="18" /> <!-- Champ pour remplir le nom -->
 					</td>
 				</tr>
 
@@ -160,6 +162,22 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 				</tr>
 				<tr>
 					<td>
+						<label for="latitude">Latitude:</label> <!-- Label latitude -->
+					</td>
+					<td>
+						<input type="text" name="latitude" id="latitude" size="18" /> <!-- Champ pour remplir le latitude -->
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="longitude">Longitude:</label> <!-- Label longitude -->
+					</td>
+					<td>
+						<input type="text" name="longitude" id="longitude" size="18" /> <!-- Champ pour remplir le longitude -->
+					</td>
+				</tr>
+				<tr>
+					<td>
 						<label for="categorie"> <? echo $panelValue[0];?>: </label> <!-- Label Categorie -->
 					</td>
 					<td>
@@ -167,7 +185,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 							<?php
 							$results = $mysqli->query("SELECT * FROM site_option WHERE option_type = 'category' ORDER BY id DESC");
 							while ($row = $results->fetch_assoc()) {
-								echo "<option>".$row['option_'.$_COOKIE['language']]."</option>";
+								echo "<option value=\"".$row['option_name']."\">".$row['option_'.$_COOKIE['language']]."</option>";
 							}
 							?>
 						</select>
@@ -175,46 +193,40 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 				</tr>
 				<tr>
 					<td>
-						<label for="ville"> <? echo $panelValue[3];?>: </label> <!-- Label de Ville -->
-					</td>
-					<td>
-						<select id="ville" name="ville"> <!-- Options du label ville -->
-							<?php
-							$results = $mysqli->query("SELECT * FROM site_option WHERE option_type = 'city'");
-							while ($row = $results->fetch_assoc()) {
-								echo "<option>".$row['option_'.$_COOKIE['language']]."</option>";
-							}
-							?>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="description"><? echo $panelValue[4];?>: <br /> <!-- Label Description -->
+						<label for="descriptionEnglish">
+						<?
+						echo $panelValue[3]." ";
+						echo ($_COOKIE['language'] == "en") ? $panelValue[10]: $panelValue[10];
+						?>
+						: <br /> <!-- Label Description -->
 						</label> 
 					</td>
 					<td>
-						<textarea  name="description" id="description" rows="6" cols="30" ></textarea> <!-- Champ pour remplir la description de l'objet -->
+						<textarea  name="descriptionEnglish" id="descriptionEnglish" rows="6" cols="30" ></textarea> <!-- Champ pour remplir la description de l'objet -->
 					</td>
 				</tr>
-
 				<tr>
 					<td>
-						<label for="email">Email:</label> <!-- Label email -->
+						<label for="descriptionFrench">
+						<?
+						echo $panelValue[3]." ";
+						echo ($_COOKIE['language'] == "en") ? $panelValue[9]: $panelValue[9];
+						?>
+						: <br /> <!-- Label Description -->
+						</label> 
 					</td>
 					<td>
-						<input type="text" name="email" id="email" size="18" /> <!-- Champ pour remplir l'email -->
+						<textarea  name="descriptionFrench" id="descriptionFrench" rows="6" cols="30" ></textarea> <!-- Champ pour remplir la description de l'objet -->
 					</td>
 				</tr>
-
 				<tr>
 					<td>
-						<input type="reset" value="<? echo $panelValue[7];?>" /> <!-- Bouton "Reinitialiser -->
+						<input type="reset" value="<? echo $panelValue[6];?>" /> <!-- Bouton "Reinitialiser -->
 					</td>
 					<td>
 					</td>
 					<td>
-						<input id="postButton" type="submit" value="<? echo $panelValue[6];?>" /> <!-- Bouton "Publier" -->
+						<input id="postButton" type="submit" value="<? echo $panelValue[5];?>" /> <!-- Bouton "Publier" -->
 					</td>
 				</tr>
 			</table>
@@ -259,7 +271,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 	<div class="content">
 		<div class="frontView">
 			<table> <!-- Annonces du site -->
-				<tr>
+				<tr class="tabHeader">
 					<?php
 					$results = $mysqli->query("SELECT * FROM site_menu WHERE id > 3");
 					while ($row = $results->fetch_assoc()) {
@@ -268,9 +280,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 					?>
 				</tr>
 				<?php
-				$results = $mysqli->query("SELECT * FROM site_annonce ORDER BY date DESC LIMIT 3");
+				$results = $mysqli->query("SELECT * FROM site_annonce ORDER BY date DESC, id DESC LIMIT 3");
 				while ($row = $results->fetch_assoc()) {
-					echo "<tr>\n";
+					echo "<tr class=\"toHide\">\n";
 					echo "<td><img src=\"images/128x128/".$row['category_option_name'].".png\" alt=\"".$row['title_'.$_COOKIE['language']]."\" /></td>\n";
 					$resultsCat = $mysqli->query("SELECT * FROM site_option WHERE option_name = '".$row['category_option_name']."'");
 					while ($rowCat = $resultsCat->fetch_assoc()) {
@@ -280,7 +292,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 					echo "<td>Toulouse</td>\n";
 					echo "<td>".$row['title_'.$_COOKIE['language']]."</td>\n";
 					echo "<td>".$row['description_'.$_COOKIE['language']]."</td>\n";
-					echo "<tr>\n";
+					echo "</tr>\n";
 				}
 				?>
 			</table>
@@ -314,7 +326,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 	</p>
 	<!-- Appels des scripts JS -->
 	<script type="text/javascript" src="javascript/jquery-1.10.2.min.js"></script>
+	<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
 	<script type="text/javascript" src="javascript/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="javascript/jquery.autocomplete.min.js"></script>
 	<script type="text/javascript" src="javascript/jquery.quickflip.min.js"></script>
 	<script type="text/javascript" src="javascript/jquery.corner.js"></script>
 	<script type="text/javascript" src="javascript/site.js"></script>

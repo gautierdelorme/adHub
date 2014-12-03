@@ -199,3 +199,8 @@ div[class^="panel"]:hover {
 	top: 0;
 	left: 0;
 }
+
+.query {
+	font-weight: bold;
+	color: red;
+}
