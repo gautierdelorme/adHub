@@ -53,7 +53,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 	}
 	?>
 	<div class="panelFind">
-		<form action="#"> <!-- Formulaire "Trouver" -->
+		<form> <!-- Formulaire "Trouver" -->
 			<table>
 				<tr>
 					<td>
@@ -128,11 +128,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 
 				<tr>
 					<td>
-						<label for="nomEnglish"><?
-						echo $panelValue[8]." ";
-						echo ($_COOKIE['language'] == "en") ? $panelValue[10]: $panelValue[10];
-						?>
-						:</label> <!-- Label Nom -->
+						<label for="nomEnglish"><?echo $panelValue[8]." ".$panelValue[10];?>:</label> <!-- Label Nom -->
 					</td>
 					<td>
 						<input type="text" name="nomEnglish" id="nomEnglish" size="18" /> <!-- Champ pour remplir le nom -->
@@ -141,11 +137,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 
 				<tr>
 					<td>
-						<label for="nomFrench"><?
-						echo $panelValue[8]." ";
-						echo ($_COOKIE['language'] == "en") ? $panelValue[9]: $panelValue[9];
-						?>
-						:</label> <!-- Label Nom -->
+						<label for="nomFrench"><?echo $panelValue[8]." ".$panelValue[9];?>:</label> <!-- Label Nom -->
 					</td>
 					<td>
 						<input type="text" name="nomFrench" id="nomFrench" size="18" /> <!-- Champ pour remplir le nom -->
@@ -193,12 +185,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 				</tr>
 				<tr>
 					<td>
-						<label for="descriptionEnglish">
-						<?
-						echo $panelValue[3]." ";
-						echo ($_COOKIE['language'] == "en") ? $panelValue[10]: $panelValue[10];
-						?>
-						: <br /> <!-- Label Description -->
+						<label for="descriptionEnglish"><?echo $panelValue[3]." ".$panelValue[10];?>: <br /> <!-- Label Description -->
 						</label> 
 					</td>
 					<td>
@@ -207,12 +194,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 				</tr>
 				<tr>
 					<td>
-						<label for="descriptionFrench">
-						<?
-						echo $panelValue[3]." ";
-						echo ($_COOKIE['language'] == "en") ? $panelValue[9]: $panelValue[9];
-						?>
-						: <br /> <!-- Label Description -->
+						<label for="descriptionFrench"><?echo $panelValue[3]." ".$panelValue[9];?>: <br /> <!-- Label Description -->
 						</label> 
 					</td>
 					<td>
@@ -268,6 +250,32 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 	<?php
 	} ?>
 	</div>
+	<?php
+	if (isset($_GET['err']) && $_GET['err'] == 1) {?>
+	<div class="error">
+		<p>
+			<?php
+			if ($_COOKIE['language'] == "fr") {
+				echo "Une erreur est survenue. Vérifier que vous êtes connecté et que vous avez rempli tous les champs.";
+			} else {
+				echo "Something happened. Please be sure you are connected and all input are not empty.";
+			}?>
+		</p>
+	</div>
+	<?php
+	} else if (isset($_GET['err']) && $_GET['err'] == 0) {?>
+	<div class="success">
+		<p>
+			<?php
+			if ($_COOKIE['language'] == "fr") {
+				echo "Annonce publiée !";
+			} else {
+				echo "Ads published !";
+			}?>
+		</p>
+	</div>
+	<?php
+	}?>
 	<div class="content">
 		<div class="frontView">
 			<table> <!-- Annonces du site -->
@@ -298,7 +306,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 			</table>
 			
 			<div class="buttonSwitch quickFlipCta"> <!-- Bouton Flip -->
-				<p>Carte</p>
+				<p><?echo $panelValue[11];?></p>
 			</div>
 		</div>
 		<div class="backView"> <!-- Page quand le bouton Flip est cliqué -->
@@ -312,7 +320,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ;?>
 			<i class="bottom left"></i>
 			<i class="bottom right"></i>
 			<div class="buttonSwitch quickFlipCta">
-				<p>Liste</p>
+				<p><?echo $panelValue[12];?></p>
 			</div>
 		</div>
 	</div>

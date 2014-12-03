@@ -9,6 +9,8 @@ if (isset($_SESSION["username"]) && check($_POST["nomFrench"]) && check($_POST["
 	$mysqli->query("INSERT INTO site_annonce VALUES (DEFAULT, '".$_POST["nomFrench"]."', '".$_POST["nomEnglish"]."', '".$_POST["descriptionFrench"]."',
 		'".$_POST["descriptionEnglish"]."', ".$_POST["prixPost"].",'".$_POST["categoriePost"]."', '".$_SESSION["userId"]."',
 		'".$_POST["latitude"]."', ".$_POST["longitude"].", NOW())");
+	header("Location: index.php?err=0");
+} else {
+	header("Location: index.php?err=1");
 }
-header("Location: index.php");
 ?>

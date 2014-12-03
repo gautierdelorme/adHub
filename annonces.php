@@ -30,6 +30,10 @@ if(isset($_GET['query'])) {
 		while ($rowCat = $resultsCat->fetch_assoc()) {
 			$suggestions['categories'][] = $rowCat['option_'.$_COOKIE['language']];
 		}
+		$resultsOwner = $mysqli->query("SELECT * FROM site_user WHERE id = ".$suggestions['annonces'][$i]['user_id']."");
+		while ($rowOwner = $resultsOwner->fetch_assoc()) {
+			$suggestions['owners'][] = $rowOwner['email'];
+		}
 		$i++;
 	}
 	print json_encode($suggestions);

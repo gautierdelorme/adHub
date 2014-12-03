@@ -1,5 +1,7 @@
 /*** Cette fonction initialise la carte ***/
 var map;
+var markers = [];
+var dataList;
 function initialize() {
   var mapOptions = {
     zoom: 13,
@@ -8,6 +10,54 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map_canvas'),
     mapOptions);
 }
+
+function addMarker(owner, data) {
+  var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">'+data['title_'+getCookie('language')]+'</h1>'+
+      '<div id="bodyContent">'+
+      '<p>Description : '+data['description_'+getCookie('language')]+'</p>'+
+      '<p>Prix : $'+data['price']+'</p>'+
+      '<p>Contact : '+owner+'</p>'+
+      '</div>'+
+      '</div>';
+  var infowindow = new google.maps.InfoWindow({
+      content: contentString
+  });
+  var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(data['latitude'],data['longitude']),
+    map: map
+  });
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map,marker);
+  });
+  markers.push(marker);
+}
+
+// Sets the map on all markers in the array.
+function setAllMap(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setAllMap(null);
+}
+
+// Shows any markers currently in the array.
+function showMarkers() {
+  setAllMap(map);
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
+
 
 /*** Cette fonction charge la carte dans la page ***/
 function loadScript() {
@@ -28,37 +78,77 @@ function validateEmail(email)
 }
 
 /*** Cette fonction verifie qu'un champ n'est pas vide ***/
-function verifChamps(item, message, placeholder){
-  if($(item).val() == "" || $(item).val() == placeholder)
-  {
-    alert(message);
-    $(item).focus();
-    return false;
+function verifChamps(item, message, placeholder, message2, placeholder2){
+  if (getCookie('language') == "fr") {
+    if($(item).val() == "" || $(item).val() == placeholder)
+    {
+      alert(message);
+      $(item).focus();
+      return false;
+    }
+    return true;
+  } else {
+    if($(item).val() == "" || $(item).val() == placeholder2)
+    {
+      alert(message2);
+      $(item).focus();
+      return false;
+    }
+    return true;
   }
-  return true;
 }
 
 /*** Cette fonction fait appelle a la precedente pour verifier les champs que l'on souhaite ***/
 function validate()
 {
-  if (!verifChamps("input[name='nom']", "Vous n'avez pas donné votre nom", "Saisissez un nom")) {  // On verifie que le nom est rentre
+  if (!verifChamps("input[name='nomEnglish']", "Vous n'avez pas entré un nom anglais", "Saisissez le nom anglais", "Enter an english name", "Enter an english name")) {  // On verifie que le nom est rentre
     return false;
   }
 
-  if (!verifChamps("input[name='prixPost']", "Vous n'avez pas donné le prix", "Saisissez un prix")) { // On verifie qu'un prix est rentre
+  if (!verifChamps("input[name='nomFrench']", "Vous n'avez pas entré un nom français", "Saisissez le nom français", "Enter a french name", "Enter a french name")) {  // On verifie que le nom est rentre
     return false;
-}
+  }
 
-  if (!verifChamps("textarea[name='description']", "Vous n'avez pas donné la description", "")) { // On verifie que la description est rentree
+  if (!verifChamps("input[name='prixPost']", "Vous n'avez pas donné le prix", "Saisissez un prix", "Enter a price", "Enter a price")) { // On verifie qu'un prix est rentre
     return false;
-  } 
+  }
+
+  if (!verifChamps("input[name='latitude']", "Saisissez une latitude", "Saisissez une latitude", "Enter a latitude", "Enter a latitude")) { // On verifie qu'un prix est rentre
+    return false;
+  }
+
+  if (!verifChamps("input[name='longitude']", "Saisissez une longitude", "Saisissez une longitude", "Enter a longitude", "Enter a longitude")) { // On verifie qu'un prix est rentre
+    return false;
+  }
+
+  if (!verifChamps("textarea[name='descriptionEnglish']", "Vous n'avez pas donné la description anglaise", "", "Enter an english description", "")) { // On verifie que la description est rentree
+    return false;
+  }
+  if (!verifChamps("textarea[name='descriptionFrench']", "Vous n'avez pas donné la description française", "", "Enter a french description", "")) { // On verifie que la description est rentree
+    return false;
+  }
 
   /* Verification que la description fait au moins 5 caracteres */
-  var long1 = $("textarea[name='description']").val().length
+  var long1 = $("textarea[name='descriptionFrench']").val().length;
+  var long2 = $("textarea[name='descriptionEnglish']").val().length
   if(long1 < 5)
   {
-    alert("Votre description est trop courte car il faut 5 caractères minimum. Elle contient "+ long1 + " caractères.");
-    $("textarea[name='description']").focus();
+    if (getCookie('language') == "fr") {
+      alert("Votre description française est trop courte car il faut 5 caractères minimum. Elle contient "+ long1 + " caractères.");
+    } else {
+      alert("Your french description is too short ("+ long1 + " characters). Min : 5.");
+    }
+    $("textarea[name='descriptionFrench']").focus();
+    return false;
+  }
+  if(long2 < 5)
+  {
+    if (getCookie('language') == "fr") {
+      alert("Votre description anglaise est trop courte car il faut 5 caractères minimum. Elle contient "+ long2 + " caractères.");
+    } else {
+      alert("Your english description is too short ("+ long2 + " characters). Min : 5.");
+    }
+    $("textarea[name='descriptionEnglish']").focus();
     return false;
   }
 
@@ -119,6 +209,9 @@ $(".buttonSwitch").corner("5px");
 $('div[class^="panel"]').draggable();
 
 $( document ).ready(function() {
+  $( "#panelPost" ).submit(function( event ) {
+    return validate();
+  });
   $('.content').quickFlip();
   $(".buttonFind").click(function( event ) {
     hideShowPanel(".panelFind");
@@ -132,24 +225,43 @@ $( document ).ready(function() {
     hideShowPanel(".panelAccount");
     event.preventDefault();
   });
-  placeholder("input[name='mot']", "Saisissez un mot clef") // Affiche un placeholder dans le champ mot clef
-  placeholder("input[name='email']", "Saisissez un email")  // Affiche un placeholder dans le champ email
-  placeholder("input[name='prixPost']", "Saisissez un prix")// Affiche un placeholder dans le champ prix
-  placeholder("input[name='nom']", "Saisissez un nom")		// Affiche un placeholder dans le champ nom
+  if (getCookie('language') == "fr") {
+    placeholder("input[name='mot']", "Saisissez un mot clef") // Affiche un placeholder dans le champ mot clef
+    placeholder("input[name='prixPost']", "Saisissez un prix")// Affiche un placeholder dans le champ prix
+    placeholder("input[name='nomFrench']", "Saisissez le nom français")		// Affiche un placeholder dans le champ nom
+    placeholder("input[name='nomEnglish']", "Saisissez le nom anglais")
+    placeholder("input[name='latitude']", "Saisissez une latitude")
+    placeholder("input[name='longitude']", "Saisissez une longitude")
+  } else {
+    placeholder("input[name='mot']", "Enter a keyword") // Affiche un placeholder dans le champ mot clef
+    placeholder("input[name='prixPost']", "Enter a price")// Affiche un placeholder dans le champ prix
+    placeholder("input[name='nomFrench']", "Enter a french name")   // Affiche un placeholder dans le champ nom
+    placeholder("input[name='nomEnglish']", "Enter an english name")
+    placeholder("input[name='latitude']", "Enter a latitude")
+    placeholder("input[name='longitude']", "Enter a longitude")
+  }
 
   $( ".buttonSwitch" ).click(function() {
     center = map.getCenter()
     setTimeout(function() {
-    google.maps.event.trigger(map,'resize');map.setCenter(center); // adapte la carte au conteneur
-  }, 500);
+      google.maps.event.trigger(map,'resize');map.setCenter(center); // adapte la carte au conteneur
+    }, 500);
+  });
+
+  $( ".error" ).click(function() {
+    $(this).hide();
+  });
+
+  $( ".success" ).click(function() {
+    $(this).hide();
   });
 
   $.extend($.expr[':'], {
-  'containsi': function(elem, i, match, array)
-  {
-    return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-  }
-});
+    'containsi': function(elem, i, match, array)
+    {
+      return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+    }
+  });
 
   $('#mot').autocomplete({
       serviceUrl: 'annonces.php',
@@ -167,7 +279,9 @@ $( document ).ready(function() {
             dataType: 'json',
             success: function(data) {
               annonces = data.annonces;
+              dataList = annonces;
               categories = data.categories;
+              owners = data.owners;
               var futurHtml = "";
               for (index = 0; index < annonces.length; index++) {
                 futurHtml +="<tr class=\"toDelete\">";
@@ -182,21 +296,26 @@ $( document ).ready(function() {
               $('.toDelete').remove();
               $('.toHide').hide();
               $(".tabHeader").after(futurHtml);
-              //$("td:containsi("+query+")").css( "color", "red" );
               $(".frontView td:containsi("+query+")").each(function () {
                 $(this).html($(this).html().replace(new RegExp(query, "ig"), "<span class='query'>"+query+"</span>"));
               });
+              deleteMarkers();
+              for (var i = 0; i < dataList.length; i++) {
+                addMarker(owners[i],dataList[i]);
+              }
             } 
           });
       },
       onSearchError: function (query, jqXHR, textStatus, errorThrown) {
         $('.toDelete').remove();
+        deleteMarkers();
       }
     });
   $('#mot').on('input', function() {
     if($(this).val().length < 3 ) {
       $('.query').removeClass('query')
       $('.toDelete').remove();
+      deleteMarkers();
       $('.toHide').show();
     }
   });

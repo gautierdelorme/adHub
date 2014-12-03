@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Mer 03 Décembre 2014 à 18:22
+-- Généré le :  Mer 03 Décembre 2014 à 21:32
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -38,7 +38,7 @@ CREATE TABLE `site_annonce` (
   `latitude` decimal(10,6) NOT NULL,
   `longitude` decimal(10,6) NOT NULL,
   `date` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `site_annonce`
@@ -53,8 +53,6 @@ INSERT INTO `site_annonce` (`id`, `title_fr`, `title_en`, `description_fr`, `des
 (14, 'Telephone Iphone', 'Mobile phone', 'Iphone 5s a vendre, encore dans son emballage, debloquÃ©', 'IPhone 5s for sale, still in its packaging, unlocked', 450, 'electronic', 4, 45.645448, -73.503716, '2014-11-26'),
 (15, 'Television 52p', '52 inc Tv', 'televiseur Sony 2009 en excellente condition Ã  vendre', 'Sony tv in 2009 in excellent condition for sale', 800, 'electronic', 4, 45.550322, -73.594353, '2014-11-27'),
 (16, 'Honda Accord 2009', 'Honda Civic 2008', 'Jolie Honda Accord 106K, achetÃ© chez le concessionnaire en 2010. Encore sous garantie  jusqu''Ã  200K, 2016', 'Jolie Honda Accord 106K, bought from the dealer in 2010. Still under warranty up to 200K, 2016', 12660, 'automobile', 6, 46.360683, -72.770724, '2014-12-01'),
-(24, 'Gaut', 'Gaut', 'ma govaaaaaa', 'ma govaaaaaa', 456, 'automobile', 2, -70.876000, 23.435200, '2014-12-03'),
-(25, 'bbbbb', 'aaa', 'sqdvqdsfg', 'TZRVesF', 123, 'automobile', 2, -70.250000, 21.870000, '2014-12-03'),
 (26, 'Appart', 'Loft', 'petit appart posÃ©', 'litlle spatio', 6000, 'lodging', 2, -70.876500, 23.908700, '2014-12-03');
 
 -- --------------------------------------------------------
@@ -97,7 +95,7 @@ CREATE TABLE `site_option` (
   `option_name` varchar(255) NOT NULL,
   `option_fr` varchar(255) NOT NULL,
   `option_en` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `site_option`
@@ -127,7 +125,9 @@ INSERT INTO `site_option` (`id`, `option_type`, `option_name`, `option_fr`, `opt
 (25, 'sort', 'category', 'CatÃ©gorie', 'Category'),
 (26, 'panel', 'name', 'Nom', 'Name'),
 (30, 'panel', 'language_fr', 'francais', 'french'),
-(31, 'panel', 'language_en', 'anglais', 'english');
+(31, 'panel', 'language_en', 'anglais', 'english'),
+(32, 'panel', 'switch_map', 'Carte', 'Map'),
+(33, 'panel', 'switch_list', 'Liste', 'List');
 
 -- --------------------------------------------------------
 
@@ -190,7 +190,7 @@ ALTER TABLE `site_user`
 -- AUTO_INCREMENT pour la table `site_annonce`
 --
 ALTER TABLE `site_annonce`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT pour la table `site_menu`
 --
@@ -200,7 +200,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 -- AUTO_INCREMENT pour la table `site_option`
 --
 ALTER TABLE `site_option`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT pour la table `site_user`
 --

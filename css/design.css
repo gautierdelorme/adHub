@@ -56,8 +56,6 @@ textarea { /* Mise en page de la zone de texte du label Description*/
 	background-repeat: repeat-x;
 	margin: 0 auto;
 	border: 1px solid black;
-	border-bottom-right-radius: 20px;
-	border-bottom-left-radius: 20px;
 }
 
 .header > h1 { /* Mise en page de la balise h1 de l'entete */
@@ -203,4 +201,28 @@ div[class^="panel"]:hover {
 .query {
 	font-weight: bold;
 	color: red;
+}
+
+.error {
+	width: 90%;
+	margin-top : 30px;
+	height: 25px;
+	margin-left: auto;
+  	margin-right: auto;
+  	text-align : center;
+	background-color: red;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.success {
+	width: 90%;
+	margin-top : 30px;
+	height: 25px;
+	margin-left: auto;
+  	margin-right: auto;
+  	text-align : center;
+	background-color: green;
+	font-weight: bold;
+	font-size: 20px;
 }
